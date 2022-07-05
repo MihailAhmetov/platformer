@@ -44,18 +44,18 @@ public class PlayerMover : MonoBehaviour
         OnGround(!Physics2D.OverlapCircle(_groundPoint.position, _groundCheckRadius, _maskGround));
     }
 
-    private void OnGround(bool onGround)
+    private void OnGround(bool isJumped)
     {
-        _animator.SetBool("isJump", onGround);
-        IsJump = onGround;
+        _animator.SetBool("isJump", isJumped);
+        IsJump = isJumped;
     }
 
     public void Jump()
     {
         if (!IsJump)
         {
-            _rigidbody.velocity = new Vector2(0, 0);
-            _rigidbody.AddForce(Vector2.up * _speed * _jumpForce, ForceMode2D.Impulse);
+            _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, _jumpForce);
+          //  _rigidbody.AddForce(Vector2.up * _speed * _jumpForce, ForceMode2D.Impulse);
         }
     }
 

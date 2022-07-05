@@ -8,7 +8,6 @@ public class PlayerInput : MonoBehaviour
 {
     private float _xInput;
    
-
     private PlayerMover _mover;
     private PlayerAttacker _attacker;
 

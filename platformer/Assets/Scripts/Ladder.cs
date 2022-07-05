@@ -12,19 +12,22 @@ public class Ladder : MonoBehaviour
         {
             GravityTurn(player, 0);
 
+
             if (Input.GetKey(KeyCode.W))
                 MoveOnLadder(player, _climbingSpeed);
             else if (Input.GetKey(KeyCode.S))
                 MoveOnLadder(player, -_climbingSpeed);
             else
-                MoveOnLadder(player, 0);
+                MoveOnLadder(player, 0);   
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.TryGetComponent(out Player player))
+        {
             GravityTurn(player, 1);
+        }
     }
 
     private static void GravityTurn(Player player, int value)
@@ -36,5 +39,4 @@ public class Ladder : MonoBehaviour
     {
         player.GetComponent<Rigidbody2D>().velocity = new Vector2(0, climbingSpeed);
     }
-
 }
