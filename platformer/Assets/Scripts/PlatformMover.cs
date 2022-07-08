@@ -33,4 +33,4 @@ public class PlatformMover : MonoBehaviour
         transform.position = _startPos + _offset;
     }
 }
-
+    

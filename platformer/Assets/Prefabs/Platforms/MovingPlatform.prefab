@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2375278323379434933}
   m_Layer: 3
   m_Name: MovingPlatform
-  m_TagString: Untagged
+  m_TagString: MovingPlatform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -142,5 +142,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27c720af46e816b4eb73fe40c3581942, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _movementVector: {x: 0, y: 0}
-  _period: 3
+  _movementVector: {x: 10.5, y: 0}
+  _period: 5

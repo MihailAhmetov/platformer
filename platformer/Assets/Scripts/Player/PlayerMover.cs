@@ -44,6 +44,18 @@ public class PlayerMover : MonoBehaviour
         OnGround(!Physics2D.OverlapCircle(_groundPoint.position, _groundCheckRadius, _maskGround));
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "MovingPlatform")
+            gameObject.transform.parent = collision.transform;
+    }
+
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        gameObject.transform.parent = null;
+    }
+
     private void OnGround(bool isJumped)
     {
         _animator.SetBool("isJump", isJumped);
