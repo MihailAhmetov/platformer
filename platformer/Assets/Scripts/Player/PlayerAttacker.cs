@@ -9,7 +9,9 @@ public class PlayerAttacker : MonoBehaviour
     [SerializeField] private Bullet _bulletPrefab;
     [SerializeField] private Transform _shootPoint;
     [SerializeField] private GameObject _weapon;
-    [SerializeField] private float _offset;
+    [SerializeField] private float _reloadingTime;
+
+    private float _lastShotTime;
 
     private Animator _animator;
     private Player _player;
@@ -22,6 +24,7 @@ public class PlayerAttacker : MonoBehaviour
 
     private void Update()
     {
+        _lastShotTime -= Time.deltaTime;
         Aim();
     }
 
@@ -29,12 +32,16 @@ public class PlayerAttacker : MonoBehaviour
     {
         Vector3 difference = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
         float rotateZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
-        _weapon.transform.rotation = Quaternion.Euler(0f, 0f, rotateZ + _offset);
+        _weapon.transform.rotation = Quaternion.Euler(0f, 0f, rotateZ);
     }
 
     public void Shoot()
     {
-        _animator.SetTrigger("Attack");
-        Instantiate(_bulletPrefab, _shootPoint.position, _shootPoint.rotation);
+        if (_lastShotTime <= 0)
+        {
+            _animator.SetTrigger("Attack");
+            Instantiate(_bulletPrefab, _shootPoint.position, _shootPoint.rotation);
+            _lastShotTime = _reloadingTime;
+        }
     }
 }
