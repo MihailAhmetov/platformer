@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5351730179744563375}
   - component: {fileID: 5351730179744563374}
   m_Layer: 3
-  m_Name: mov-platform2
+  m_Name: StaticPlatform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
