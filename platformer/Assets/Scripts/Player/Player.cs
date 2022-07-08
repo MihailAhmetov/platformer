@@ -13,7 +13,7 @@ public class Player : MonoBehaviour
     public event UnityAction<int> HealthChanged;
     public event UnityAction Died;
 
-    public bool FacingRight;
+    public bool FacingRight { get; set; }
 
     private void Start()
     {

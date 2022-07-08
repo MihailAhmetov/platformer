@@ -22,20 +22,15 @@ public class PlayerInput : MonoBehaviour
         MoveInput();
         JumpInput();
         ShootInput();
+        _mover.MouseFlip();
     }
 
     private void MoveInput()
     {
         if (Input.GetKey(KeyCode.A))
-        {
             _mover.Move(-_mover.Speed);
-            _mover.FlipLeft();
-        }
         else if (Input.GetKey(KeyCode.D))
-        {
             _mover.Move(_mover.Speed);
-            _mover.FlipRight();
-        }
         else if (Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.D))
             _mover.StopMove();
     }
@@ -50,7 +45,7 @@ public class PlayerInput : MonoBehaviour
 
     private void ShootInput()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetMouseButtonDown(0))
         {
             _attacker.Shoot();
         }

@@ -23,11 +23,12 @@ public class PlayerMover : MonoBehaviour
 
     public float Speed { get; private set; }
 
-    public bool IsJump = false;
+    public bool IsJump { get; private set; }
     
 
     private void Awake()
     {
+        IsJump = false;
         Speed = _speed;
     }
 
@@ -71,21 +72,16 @@ public class PlayerMover : MonoBehaviour
         }
     }
 
-    public void FlipLeft()
+    public void MouseFlip()
     {
-        if (_player.FacingRight)
+        Vector2 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
+        if (pos.x > 0)
         {
-            _player.FacingRight = false;
-            transform.Rotate(0f, 180f, 0f);
+            transform.localRotation = Quaternion.Euler(0, 0, 0);
         }
-    }
-
-    public void FlipRight()
-    {
-        if (!_player.FacingRight)
+        if (pos.x < 0)
         {
-            _player.FacingRight = true;
-            transform.Rotate(0f, 180f, 0f);
+            transform.localRotation = Quaternion.Euler(0, 180, 0);
         }
     }
 
