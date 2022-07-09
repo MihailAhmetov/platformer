@@ -18,6 +18,9 @@ public class Player : MonoBehaviour
     private void Start()
     {
         FacingRight = true;
+
+        HealthChanged?.Invoke(_health);
+
         _spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
@@ -26,6 +29,9 @@ public class Player : MonoBehaviour
         _health -= damage;
         HealthChanged?.Invoke(_health);
         StartCoroutine(DamageAnimation());
+
+        if (_health <= 0)
+            Die();
     }
 
     private IEnumerator DamageAnimation()
@@ -41,5 +47,10 @@ public class Player : MonoBehaviour
             _spriteRenderer.color = startColor;
             yield return new WaitForSeconds(0.2f);
         }
+    }
+
+    private void Die()
+    {
+        Died?.Invoke();
     }
 }
